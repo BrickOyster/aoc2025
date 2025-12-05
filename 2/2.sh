@@ -1,9 +1,19 @@
 #!/bin/bash
 # aocli view -d 2 -y 2025
 time {
+total=$(echo $(tr ',' '\n' < 2.in) | wc -w)
+count=0
+bar_width=50
 part1=0; part2=0
 
 while IFS= read -r i; do
+    ((count++))
+
+    progress=$((count * bar_width / total))
+    bar=$(printf "%${progress}s" | tr ' ' '#')
+    space=$(printf "%$((bar_width - progress))s")
+
+    printf "\r[%s%s] %d/%d" "$bar" "$space" "$count" "$total"
     start=${i%-*}
     end=${i#*-}
     for num in $(seq $start $end); do
@@ -14,7 +24,7 @@ while IFS= read -r i; do
             fi
         fi
     done
-done < <(tr ',' '\n' < 2.in)
+done < <(tr ',' '\n' < 2.in); echo ""
 
 echo "Part 1: $part1"
 # aocli submit -d 2 -y 2025 -p 1 26255179562

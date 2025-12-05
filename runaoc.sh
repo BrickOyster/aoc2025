@@ -9,11 +9,20 @@ function getPuzzle {
 #!/bin/bash
 # aocli view -d $DAY -y 2025
 time {
+total=\$(wc -l < $DAY.in)
+count=0
+bar_width=20
 part1=0; part2=0
 
 while IFS= read -r i; do
-    echo "Processing line: $i"
-done < "$DAY.in"
+    ((count++))
+
+    progress=\$((count * bar_width / total))
+    bar=\$(printf "%\${progress}s" | tr ' ' '#')
+    space=\$(printf "%\$((bar_width - progress))s")
+
+    printf "\r[%s%s] %d/%d" "\$bar" "\$space" "\$count" "\$total"
+done < $DAY.in; echo ""
 
 echo "Part 1: \$part1"
 # aocli submit -d $DAY -y 2025 -p 1
