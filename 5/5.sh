@@ -9,22 +9,22 @@ bar_width=20
 part1=0; part2=0
 
 echo "Processing Part 1..."
-# for i in $ingredients; do
-#     ((count++))
+for i in $ingredients; do
+    ((count++))
 
-#     progress=$((count * bar_width / total))
-#     bar=$(printf "%${progress}s" | tr ' ' '#')
-#     space=$(printf "%$((bar_width - progress))s")
+    progress=$((count * bar_width / total))
+    bar=$(printf "%${progress}s" | tr ' ' '#')
+    space=$(printf "%$((bar_width - progress))s")
 
-#     printf "\r[%s%s] %d/%d" "$bar" "$space" "$count" "$total"
-#     for r in $ranges; do
-#         IFS='-' read -r min max <<< "$r"
-#         if (( $i >= $min && $i <= $max )); then
-#             (( part1 += 1 ))
-#             break
-#         fi
-#     done
-# done; echo ""
+    printf "\r[%s%s] %d/%d" "$bar" "$space" "$count" "$total"
+    for r in $ranges; do
+        IFS='-' read -r min max <<< "$r"
+        if (( $i >= $min && $i <= $max )); then
+            (( part1 += 1 ))
+            break
+        fi
+    done
+done; echo ""
 
 echo "Part 1: $part1"
 # aocli submit -d 5 -y 2025 -p 1 770
@@ -91,7 +91,6 @@ done; echo ""
 merged+=("$cur_s-$cur_e")
 
 for r in "${merged[@]}"; do
-    echo "Processing range $r..."
     IFS='-' read -r min max <<< "$r"
     part2=$(( part2 + max - min + 1 ))
 done
