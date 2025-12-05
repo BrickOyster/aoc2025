@@ -1,4 +1,5 @@
 cd ..
+git fetch && git pull
 if [[ -z $(git submodule update --remote ./brick/) ]]; then
     echo "No updates in brick"
     exit 0
