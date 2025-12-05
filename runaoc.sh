@@ -5,7 +5,7 @@ function getPuzzle {
   DAY=$1
   mkdir -p ./$DAY
   aocli get -o ./$DAY/$DAY.in -d $DAY -y 2025
-  sudo bash -c "cat > ./$DAY/$DAY.sh" << EOF
+  bash -c "cat > ./$DAY/$DAY.sh" <<EOF
 #!/bin/bash
 # aocli view -d $DAY -y 2025
 time {
