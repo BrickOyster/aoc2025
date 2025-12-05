@@ -19,6 +19,6 @@ done < <(tr ',' '\n' < 2.in)
 echo "Part 1: $part1"
 # aocli submit -d 2 -y 2025 -p 1 26255179562
 echo "Part 2: $part2"
-# aocli submit -d 2 -y 2025 -p 2
+# aocli submit -d 2 -y 2025 -p 2 31680313976
 }
 echo "Done!"
